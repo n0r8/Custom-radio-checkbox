@@ -1,0 +1,80 @@
+<html>
+<head>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="custom.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript">
+$(document).ready(function(){
+	$(".radioclass").Custom({
+		customStyleClass:'radio',
+		customHeight:'25'
+	});
+	$(".checkboxclass").Custom({
+		customStyleClass:'checkbox',
+		customHeight:'25'
+	});
+});
+
+</script>
+<style type="text/css">
+.radio {
+	height: 25px;
+	width: 19px;
+	clear:left;
+	float:left;
+	margin: 0 0 3px;
+	padding: 0 0 0 26px;
+	background: url("radio.png");
+	background-repeat:no-repeat;
+	cursor: default;
+	position:relative;
+	overflow:hidden;
+}
+.checkbox {
+	position:relative;
+	height: 25px;
+	width: 19px;
+	clear:left;
+	float:left;
+	margin: 0 0 3px;
+	padding: 0 0 0 26px;
+	background: url("checkbox.png") no-repeat;
+	cursor: default;
+	text-align:left;
+	overflow:hidden;
+}
+
+
+
+.block {
+	width: 50%;
+}
+label {
+	padding-left:10px;
+	float:left;
+	text-align:left;
+}
+body {
+font-family:arial;
+font-size:13px;
+color:#343434;
+}
+</style>
+</head>
+
+<body>
+
+<div class="block">
+	<input type="checkbox" id="checkbox1" class="checkboxclass"/>
+	<label for="checkbox1">checkbox1</label>
+</div>
+
+<div class="block">
+	<input type="radio" id="radio1" name="group" class="radioclass"/>
+	<label for="radio1">radio1</label> <br />
+	
+	<input type="radio" id="radio2" name="group" class="radioclass"/>
+	<label for="radio2">radio2</label>
+</div>
+
+</body>
+</html>
