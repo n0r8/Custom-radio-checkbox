@@ -14,13 +14,16 @@
 	});
 */
 (function($){
- 
+	$.CustomData = {
+		elements:$()
+	};
+	
     $.fn.extend({
         
         Custom: function(options) {
  
 			var elements = this;
-			
+			$.CustomData.elements = $.CustomData.elements.add(elements);
 			
 			/*Дефолтные значения параметров*/
             var defaults = {
@@ -64,42 +67,56 @@
 			
 			};
 			
-			
 			/*Обновление картинки при клике по лейблу и загрузке документа*/
 			var update = function(){
-				elements.each(function(){ /*Проходим по всем елементам и проверяем их состояние*/
+				$.CustomData.elements.each(function(){ /*Проходим по всем елементам и проверяем их состояние*/
 					if($(this).is(':checked')){
-						$(this).parent().css('backgroundPosition', "0px -" + options.customHeight*2 + "px");
+						$(this).parent().css('backgroundPosition', "0px -" + $(this).attr('data-height')*2 + "px");
 					}else{
 						$(this).parent().css('backgroundPosition', "0px 0px");
 					};
 				});
 			};
 			
+			/*Обновление при изменении состояния disabled/enabled */
+			var refresh = function(){
+				if(!$(this).prop('disabled')){
+					$(this).parent().mousedown(pushed);
+					$(this).parent().mouseup(check);
+					$(this).parent().removeClass('disabled');
+				}else{
+					$(this).parent().addClass('disabled');
+					$(this).parent().unbind('mousedown', pushed);
+					$(this).parent().unbind('mouseup', check);
+				};
+			};
  
             return this.each(function() {
-				$(this).wrap('<span/>');/*Оборачиваем в <span></span>*/
-				var span = $(this).parent().addClass(options.customStyleClass);/*Приписываем класс оформления переданный в параметрах*/
-				/*Задаем картинку еси элемент отмечен*/
-				if($(this).is(':checked') === true) {
-					span.css('backgroundPosition', "0px -" + (options.customHeight*2) + "px");
+				if($(this).attr('data-init') != '1'){
+					$(this).attr('data-init','1');
+					$(this).attr('data-height',options.customHeight);
+					$(this).wrap('<span/>');/*Оборачиваем в <span></span>*/
+					var span = $(this).parent().addClass(options.customStyleClass);/*Приписываем класс оформления переданный в параметрах*/
+					/*Задаем картинку еси элемент отмечен*/
+					if($(this).is(':checked') === true) {
+						span.css('backgroundPosition', "0px -" + (options.customHeight*2) + "px");
+					};
+					
+					/*Бинд на изменение состояния элемента и кастомное событие для обновления после программного изменения состояния кнопки*/
+					$(this).bind('change', update);
+					$(this).bind('custom.refresh', refresh);
+					
+					if(!$(this).prop('disabled')){
+						/*Бинд функций на span*/
+						span.mousedown(pushed);
+						span.mouseup(check);
+					}else{
+						/*Добавление класса если элемент неактивен*/
+						span.addClass('disabled');
+					};
 				};
-				
-				/*Бинд на изменение состояния элемента*/
-				$(this).change(update);
-				
-				if(!$(this).prop('disabled')){
-					/*Бинд функция на span*/
-					span.mousedown(pushed);
-					span.mouseup(check);
-				}else{
-					/*Добавление класса если элемент неактивен*/
-					span.addClass('disabled');
-				};
-				
 				/*Обновляем состояния (клика по лейблу)*/
 				$(document).mouseup(update);
-             
             });
         }
     });

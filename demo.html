@@ -1,5 +1,8 @@
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+
 <head>
+<title>custom checkbox radio</title>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="custom.js" type="text/javascript"></script>
 <script language="javascript" type="text/javascript">
@@ -10,7 +13,7 @@ $(document).ready(function(){
 	});
 	$(".checkboxclass").Custom({
 		customStyleClass:'checkbox',
-		customHeight:'25'
+		customHeight:'20'
 	});
 });
 
@@ -27,12 +30,16 @@ $(document).ready(function(){
 	background-repeat:no-repeat;
 	cursor: default;
 	position:relative;
-	overflow:hidden;
+
+}
+.radio.disabled{
+	opacity:0.5;
+	filter:Alpha(opacity="50");
 }
 .checkbox {
 	position:relative;
-	height: 25px;
-	width: 19px;
+	height: 20px;
+	width: 20px;
 	clear:left;
 	float:left;
 	margin: 0 0 3px;
@@ -40,8 +47,10 @@ $(document).ready(function(){
 	background: url("checkbox.png") no-repeat;
 	cursor: default;
 	text-align:left;
-	overflow:hidden;
+
 }
+
+.checkbox input, .radio input{position:absolute; right:-400px;top:0px;}
 
 label {
 	padding-left:10px;
@@ -60,17 +69,50 @@ color:#343434;
 
 <body>
 
-
+<div>
 	<input type="checkbox" id="checkbox1" class="checkboxclass"/>
 	<label for="checkbox1">checkbox1</label>
+	<br clear="all" style="clear:both;"/>
+	
+	<input type="checkbox" id="checkbox2" class="checkboxclass"/>
+	<label for="checkbox2">checkbox2</label>
+	<br clear="all" style="clear:both;"/>
+	
+	<input type="checkbox" id="checkbox3" class="checkboxclass"/>
+	<label for="checkbox3">checkbox3</label>
+	<br clear="all" style="clear:both;"/>
+</div>
 
-
-
+<div>
 	<input type="radio" id="radio1" name="group" class="radioclass"/>
 	<label for="radio1">radio1</label> <br />
-	
+		<br clear="all" style="clear:both;"/>
 	<input type="radio" id="radio2" name="group" class="radioclass"/>
 	<label for="radio2">radio2</label>
-
+		<br clear="all" style="clear:both;"/>
+	<input type="radio" id="radio3" name="group" class="radioclass" disabled="disabled"/>
+	<label for="radio3">radio3</label>
+	<br clear="all" style="clear:both;"/>
+</div>
+<div id="create">
+	
+</div>
+	<br clear="all" style="clear:both;"/>
+	<button onClick="$('#radio3').removeAttr('disabled').trigger('custom.refresh'); " >Enable</button>
+	<button onClick="$('#radio3').attr('disabled','disabled').trigger('custom.refresh'); " >Disable</button>
+	<button id="create-btn">Create</button>
+	<script type="text/javascript">
+		$('#create-btn').click(function(){
+			$('#create').html('<input type="radio" id="radio4" name="group" class="radioclass"/><label for="radio4">radio4</label><input type="checkbox" id="checkbox4" class="checkboxclass"/><label for="checkbox4">checkbox4</label><br clear="all" style="clear:both;"/>')
+			$(".radioclass").Custom({
+				customStyleClass:'radio',
+				customHeight:'25'
+			});
+			$(".checkboxclass").Custom({
+				customStyleClass:'checkbox',
+				customHeight:'20'
+			});
+		});
+	</script>
 </body>
 </html>
