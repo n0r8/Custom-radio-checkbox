@@ -1,6 +1,6 @@
 ﻿Custom radio & checkbox jQuery plugin;
 by N0r8 millianorb@gmail.com;
-
+for more info watch Wiki <a href="https://github.com/n0r8/Custom-radio-checkbox-buttons/wiki">Wiki</a>
 	usage:
 	$('your checkbox or radio selector').Custom({
 		customStyleClass:'classForcustomView',
