@@ -2,26 +2,26 @@
 by N0r8 millianorb@gmail.com;<br/>
 for more info watch Wiki <a href="https://github.com/n0r8/Custom-radio-checkbox-buttons/wiki">Wiki</a><br/>
 </p>
-<code><pre>
+<pre><code>
 	usage:
 	$('your checkbox or radio selector').Custom({
 		customStyleClass:'classForcustomView',
 		customHeight:'height of checkbox or radio'
 	});
-</pre></code>
+</code></pre>
 <p>example:</p>
-<code><pre>
+<pre><code>
 	$('input[type="checkbox"]').Custom({
 		customStyleClass:'checkbox',
 		customHeight:'16'
 	});
-</pre></code>
+</code></pre>
 <p>If you need disable or enable button update them like this(in demo.html):</p>
-<code><pre>
+<pre><code>
 	$('#radio3').removeAttr('disabled').trigger('custom.refresh');
-</pre></code>
+</code></pre>
 <p>If you dinamical added button just recall plugin after html with buttons added(in demo.html):</p>
-<code><pre>
+<pre><code>
 		Create call then
 		$(".radioclass").Custom({
 			customStyleClass:'radio',
@@ -31,4 +31,4 @@ for more info watch Wiki <a href="https://github.com/n0r8/Custom-radio-checkbox-
 			customStyleClass:'checkbox',
 			customHeight:'20'
 		});
-</pre></code>
+</code></pre>
