@@ -1,9 +1,9 @@
 ﻿<p>Custom radio & checkbox jQuery plugin; <br/>
 by N0r8 millianorb@gmail.com;<br/>
-for more info watch Wiki <a href="https://github.com/n0r8/Custom-radio-checkbox-buttons/wiki">Wiki</a><br/>
+for more info watch <a href="https://github.com/n0r8/Custom-radio-checkbox-buttons/wiki">Wiki</a><br/>
 </p>
 <pre><code>
-	usage:
+usage:
 	$('your checkbox or radio selector').Custom({
 		customStyleClass:'classForcustomView',
 		customHeight:'height of checkbox or radio'
