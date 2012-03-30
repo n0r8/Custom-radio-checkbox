@@ -1,4 +1,4 @@
-﻿<p>Thank to <a href="https://github.com/grachov">Andrew</a> for help, and to <a href="www.ryanfait.com">Ryan Fait</a> for some algoritms from his "CUSTOM FORM ELEMENTS"<p>
+﻿<p>Thank to <a href="https://github.com/grachov">Andrew</a> for help, and to <a href="http://ryanfait.com">Ryan Fait</a> for some algoritms from his "CUSTOM FORM ELEMENTS"<p>
 <p>Custom radio & checkbox jQuery plugin; <br/>
 by N0r8 millianorb@gmail.com;<br/>
 for more info watch <a href="https://github.com/n0r8/Custom-radio-checkbox-buttons/wiki">Wiki</a><br/>
