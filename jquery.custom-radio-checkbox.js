@@ -80,13 +80,9 @@
             /*Обновление при изменении состояния disabled/enabled */
             var refresh = function () {
                 if (!$(this).prop('disabled')) {
-                    $(this).parent().mousedown(pushed);
-                    $(this).parent().mouseup(check);
-                    $(this).parent().removeClass('disabled');
+                    $(this).parent().mousedown(pushed).mouseup(check).removeClass('disabled');
                 } else {
-                    $(this).parent().addClass('disabled');
-                    $(this).parent().unbind('mousedown', pushed);
-                    $(this).parent().unbind('mouseup', check);
+                    $(this).parent().addClass('disabled').unbind('mousedown', pushed).unbind('mouseup', check);
                 }
             };
 
