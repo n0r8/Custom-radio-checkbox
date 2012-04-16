@@ -1,0 +1,77 @@
+﻿<div class="markdown-body">
+      <p>Welcome to the Custom-radio-checkbox-buttons wiki!</p>
+
+<p>This plugin wrap default buttons with 'span' tag and emulate behavior of elements, it also react on label click. <br></p>
+
+<h1>Work in IE6+ and all new browsers.<br>
+</h1>
+
+<p><strong>Usage:</strong></p>
+
+<pre><code>
+$('your checkbox or radio selector').Custom({
+    customStyleClass:'classForcustomView',
+    customHeight:'height of checkbox or radio'
+});
+</code></pre>
+
+<hr><p><strong>Example:</strong></p>
+
+<pre><code>
+$('input[type="checkbox"]').Custom({
+    customStyleClass:'checkbox',
+    customHeight:'16'
+});
+</code></pre>
+
+<hr><p>Also need styles like this:</p>
+
+<pre><code>
+.checkbox {
+    position:relative;
+    height: 20px;
+    width: 20px;    
+    overflow:hidden;
+    clear:left;
+    float:left;
+    margin: 0 0 3px;
+    padding: 0 0 0 26px;
+    background: url("checkbox.png") no-repeat;
+    cursor: default;
+    text-align:left;
+}
+
+.checkbox input{
+    position:absolute;
+    left:-999px;
+}
+</code></pre>
+
+<p>Where checkbox.png sprite of checkbox with 4 states:
+<br></p><ol>
+<li>Unchecked;</li>
+<li>Unchecked mouse down;</li>
+<li>Checked;</li>
+<li>Checked mouse down;</li>
+</ol><br>
+Like this one: <br><img alt="checkbox example" src="https://github.com/n0r8/Custom-radio-checkbox-buttons/blob/master/checkbox.png?raw=true"><br> or this:<br><img alt="radio example" src="https://github.com/n0r8/Custom-radio-checkbox-buttons/blob/master/radio.png?raw=true"><br><b>You can use different checkboxes and radio on 1 page as much as you want.</b> You need call plugin with different <b>customStyleClass</b> on different objects.
+
+<p>If you need <em><strong>disable</strong></em> or <em><strong>enable</strong></em> button update them like this(in demo.html):</p>
+
+<pre><code>$('#radio3').removeAttr('disabled').trigger('custom.refresh');
+$('#radio3').attr('disabled','disabled').trigger('custom.refresh');</code></pre>
+
+<hr><p>If you <em><strong>dinamical added</strong></em> button just recall plugin after html with buttons added(in demo.html):</p>
+
+<pre><code>
+Create input then call:
+
+$(".radioclass").Custom({
+  customStyleClass:'radio',
+  customHeight:'25'
+});
+
+</code></pre>
+
+<hr>
+    </div>
