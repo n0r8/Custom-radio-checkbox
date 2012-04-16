@@ -94,10 +94,11 @@
                 if ($(this).attr('data-init') != '1') {
                     $(this).attr('data-init', '1');
                     $(this).attr('data-height', options.customHeight);
-                    $(this).wrap('<span/>');
                     /*Оборачиваем в <span></span>*/
-                    var span = $(this).parent().addClass(options.customStyleClass);
+                    $(this).wrap('<span/>');
                     /*Приписываем класс оформления переданный в параметрах*/
+                    var span = $(this).parent().addClass(options.customStyleClass);
+                
                     if ($(this).is(':checked') === true) {  /*Задаем картинку еси элемент отмечен*/
                         span.css('backgroundPosition', "0px -" + (options.customHeight * 2) + "px");
                     }
