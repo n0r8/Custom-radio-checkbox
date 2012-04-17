@@ -59,7 +59,7 @@
                     } else {
                         /*Радиобатоны*/
                         el.css('backgroundPosition', "0px -" + options.customHeight * 2 + "px");
-                        $('input[name=' + element.attr('name') + ']').not(element).parent().css('backgroundPosition', '0px 0px');
+                        $('input[name="' + element.attr('name') + '"]').not(element).parent().css('backgroundPosition', '0px 0px');
                     }
 
                     element.prop('checked', true).change();
