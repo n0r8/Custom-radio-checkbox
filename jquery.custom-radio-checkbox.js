@@ -48,20 +48,21 @@
             /*Отмечаем нажатый елемент все остальные сбрасываем, если они в групе(radio)*/
             var check = function () {
                 var element = $(this).children('input');
+				var el= $(this);
                 if (element.is(':checked') && element.attr('type') === 'checkbox') {/*Отмеченный чекбокс*/
-                    $(this).css('backgroundPosition', '0px 0px');
-                    $(this).children('input').attr('checked', false).change();
+                    el.css('backgroundPosition', '0px 0px');
+                    element.attr('checked', false).change();
                     /*Меняем атрибут на неотмеченный и вызываем событие смены состояния элемента*/
                 } else {
                     if (element.attr('type') === 'checkbox') {/*Неотмеченный чекбокс*/
-                        $(this).css('backgroundPosition', "0px -" + options.customHeight * 2 + "px");
+                        el.css('backgroundPosition', "0px -" + options.customHeight * 2 + "px");
                     } else {
                         /*Радиобатоны*/
-                        $(this).css('backgroundPosition', "0px -" + options.customHeight * 2 + "px");
+                        el.css('backgroundPosition', "0px -" + options.customHeight * 2 + "px");
                         $('input[name=' + element.attr('name') + ']').not(element).parent().css('backgroundPosition', '0px 0px');
                     }
 
-                    $(this).children('input').attr('checked', 'checked').change();
+                    element.attr('checked', 'checked').change();
                 }
 
             };
@@ -69,41 +70,43 @@
             /*Обновление картинки при клике по лейблу и загрузке документа*/
             var update = function () {
                 $.CustomData.elements.each(function () { /*Проходим по всем елементам и проверяем их состояние*/
-                    if ($(this).is(':checked')) {
-                        $(this).parent().css('backgroundPosition', "0px -" + $(this).attr('data-height') * 2 + "px");
+					var el= $(this);
+                    if (el.is(':checked')) {
+                        el.parent().css('backgroundPosition', "0px -" + el.attr('data-height') * 2 + "px");
                     } else {
-                        $(this).parent().css('backgroundPosition', "0px 0px");
+                        el.parent().css('backgroundPosition', "0px 0px");
                     }
                 });
             };
 
             /*Обновление при изменении состояния disabled/enabled */
             var refresh = function () {
-                if (!$(this).prop('disabled')) {
-                    $(this).parent().mousedown(pushed).mouseup(check).removeClass('disabled');
+				var el= $(this);
+                if (!el.prop('disabled')) {
+                    el.parent().mousedown(pushed).mouseup(check).removeClass('disabled');
                 } else {
-                    $(this).parent().addClass('disabled').unbind('mousedown', pushed).unbind('mouseup', check);
+                    el.parent().addClass('disabled').unbind('mousedown', pushed).unbind('mouseup', check);
                 }
             };
 
             return this.each(function () {
-                if ($(this).attr('data-init') != '1') {
-                    $(this).attr('data-init', '1');
-                    $(this).attr('data-height', options.customHeight);
+				var el=$(this);
+                if (el.attr('data-init') != '1') {
+                    el.attr('data-init', '1');
+                    el.attr('data-height', options.customHeight);
                     /*Оборачиваем в <span></span>*/
-                    $(this).wrap('<span/>');
+                    el.wrap('<span/>');
                     /*Приписываем класс оформления переданный в параметрах*/
-                    var span = $(this).parent().addClass(options.customStyleClass);
+                    var span = el.parent().addClass(options.customStyleClass);
                 
-                    if ($(this).is(':checked') === true) {  /*Задаем картинку еси элемент отмечен*/
+                    if (el.is(':checked') === true) {  /*Задаем картинку еси элемент отмечен*/
                         span.css('backgroundPosition', "0px -" + (options.customHeight * 2) + "px");
                     }
 
                     /*Бинд на изменение состояния элемента и кастомное событие для обновления после программного изменения состояния кнопки*/
-                    $(this).bind('change', update);
-                    $(this).bind('custom.refresh', refresh);
+                    el.bind('change', update).bind('custom.refresh', refresh);
 
-                    if (!$(this).prop('disabled')) {
+                    if (!el.prop('disabled')) {
                         /*Бинд функций на span*/
                         span.mousedown(pushed);
                         span.mouseup(check);
