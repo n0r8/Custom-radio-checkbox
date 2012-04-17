@@ -37,7 +37,7 @@
             /*Вид при нажатии на активный и неактивный элементы*/
             var pushed = function () {
                 var element = $(this).children('input');
-                if (element.is(':checked')) {
+                if (element.prop('checked')) {
                     /*смещения в спрайте*/
                     $(this).css('backgroundPosition', "0px -" + options.customHeight * 3 + "px");
                 } else {
@@ -49,12 +49,12 @@
             var check = function () {
                 var element = $(this).children('input');
 				var el= $(this);
-                if (element.is(':checked') && element.attr('type') === 'checkbox') {/*Отмеченный чекбокс*/
+                if (element.prop('checked') && element.is(':checkbox')) {/*Отмеченный чекбокс*/
                     el.css('backgroundPosition', '0px 0px');
-                    element.attr('checked', false).change();
+                    element.prop('checked', false).change();
                     /*Меняем атрибут на неотмеченный и вызываем событие смены состояния элемента*/
                 } else {
-                    if (element.attr('type') === 'checkbox') {/*Неотмеченный чекбокс*/
+                    if (element.is(':checkbox')) {/*Неотмеченный чекбокс*/
                         el.css('backgroundPosition', "0px -" + options.customHeight * 2 + "px");
                     } else {
                         /*Радиобатоны*/
@@ -62,7 +62,7 @@
                         $('input[name=' + element.attr('name') + ']').not(element).parent().css('backgroundPosition', '0px 0px');
                     }
 
-                    element.attr('checked', 'checked').change();
+                    element.prop('checked', true).change();
                 }
 
             };
@@ -71,7 +71,7 @@
             var update = function () {
                 $.CustomData.elements.each(function () { /*Проходим по всем елементам и проверяем их состояние*/
 					var el= $(this);
-                    if (el.is(':checked')) {
+                    if (el.prop('checked')) {
                         el.parent().css('backgroundPosition', "0px -" + el.attr('data-height') * 2 + "px");
                     } else {
                         el.parent().css('backgroundPosition', "0px 0px");
@@ -99,7 +99,7 @@
                     /*Приписываем класс оформления переданный в параметрах*/
                     var span = el.parent().addClass(options.customStyleClass);
                 
-                    if (el.is(':checked') === true) {  /*Задаем картинку еси элемент отмечен*/
+                    if (el.prop('checked')) {  /*Задаем картинку еси элемент отмечен*/
                         span.css('backgroundPosition', "0px -" + (options.customHeight * 2) + "px");
                     }
 
