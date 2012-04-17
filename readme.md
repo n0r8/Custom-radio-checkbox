@@ -2,6 +2,7 @@
 <p>Custom radio & checkbox jQuery plugin; <br/>
 by N0r8 millianorb@gmail.com;<br/>
 for more info watch <a href="https://github.com/n0r8/Custom-radio-checkbox/wiki">Wiki</a><br/>
+jquery 1.6 + compatible
 </p>
 <pre><code>
 usage:
