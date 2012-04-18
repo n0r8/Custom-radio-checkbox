@@ -109,8 +109,7 @@
 
                     if (!el.prop('disabled')) {
                         /*Бинд функций на span*/
-                        span.mousedown(pushed);
-                        span.mouseup(check);
+                        span.bind({mousedown:pushed,mouseup:check});
                     } else {
                         /*Добавление класса если элемент неактивен*/
                         span.addClass('disabled');
