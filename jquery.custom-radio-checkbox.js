@@ -47,8 +47,9 @@
 
             /*Отмечаем нажатый елемент все остальные сбрасываем, если они в групе(radio)*/
             var check = function () {
-                var element = $(this).children('input');
 				var el= $(this);
+                var element = el.children('input');
+				
                 if (element.prop('checked') && element.is(':checkbox')) {/*Отмеченный чекбокс*/
                     el.css('backgroundPosition', '0px 0px');
                     element.prop('checked', false).change();
@@ -83,9 +84,9 @@
             var refresh = function () {
 				var el= $(this);
                 if (!el.prop('disabled')) {
-                    el.parent().mousedown(pushed).mouseup(check).removeClass('disabled');
+                    el.parent().bind({mousedown: pushed, mouseup: check}).removeClass('disabled');
                 } else {
-                    el.parent().addClass('disabled').unbind('mousedown', pushed).unbind('mouseup', check);
+                    el.parent().addClass('disabled').unbind({mousedown: pushed, mouseup: check});
                 }
             };
 
