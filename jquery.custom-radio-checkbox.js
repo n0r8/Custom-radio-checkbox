@@ -83,18 +83,13 @@
             /*Обновление при изменении состояния disabled/enabled */
             var refresh = function () {
 				var el= $(this);
-                if (!el.prop('disabled')) {
-                    el.parent().bind({mousedown: pushed, mouseup: check}).removeClass('disabled');
-                } else {
-                    el.parent().addClass('disabled').unbind({mousedown: pushed, mouseup: check});
-                }
+                el.parent()[!el.prop('disabled') ? 'bind' : 'unbind']({mousedown: pushed, mouseup: check}).toggleClass('disabled');
             };
 
             return this.each(function () {
 				var el=$(this);
                 if (el.attr('data-init') != '1') {
-                    el.attr('data-init', '1');
-                    el.attr('data-height', options.customHeight);
+                    el.attr({'data-init':'1', 'data-height':options.customHeight});
                     /*Оборачиваем в <span></span>*/
                     el.wrap('<span/>');
                     /*Приписываем класс оформления переданный в параметрах*/
@@ -105,7 +100,7 @@
                     }
 
                     /*Бинд на изменение состояния элемента и кастомное событие для обновления после программного изменения состояния кнопки*/
-                    el.bind('change', update).bind('custom.refresh', refresh);
+					el.bind({change:update, 'custom.refresh':refresh});
 
                     if (!el.prop('disabled')) {
                         /*Бинд функций на span*/
