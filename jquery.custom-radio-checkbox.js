@@ -89,9 +89,8 @@
             return this.each(function () {
 				var el=$(this);
                 if (el.attr('data-init') != '1') {
-                    el.attr({'data-init':'1', 'data-height':options.customHeight});
-                    /*Оборачиваем в <span></span>*/
-                    el.wrap('<span/>');
+                    el.attr({'data-init':'1', 'data-height':options.customHeight}).wrap('<span/>');
+
                     /*Приписываем класс оформления переданный в параметрах*/
                     var span = el.parent().addClass(options.customStyleClass);
                 
