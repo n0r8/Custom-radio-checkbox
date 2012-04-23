@@ -101,11 +101,9 @@
                     /*Бинд на изменение состояния элемента и кастомное событие для обновления после программного изменения состояния кнопки*/
 					el.bind({change:update, 'custom.refresh':refresh});
 
-                    if (!el.prop('disabled')) {
-                        /*Бинд функций на span*/
-                        span.bind({mousedown:pushed,mouseup:check});
+                    if (!el.prop('disabled')){
+						span.parent('label').length ? span.bind({mousedown:pushed}) : span.bind({mousedown:pushed,mouseup:check});
                     } else {
-                        /*Добавление класса если элемент неактивен*/
                         span.addClass('disabled');
                     }
                 }
