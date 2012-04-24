@@ -83,7 +83,7 @@
             /*Обновление при изменении состояния disabled/enabled */
             var refresh = function () {
 				var el= $(this);
-                el.parent()[!el.prop('disabled') ? 'bind' : 'unbind']({mousedown: pushed, mouseup: check}).toggleClass('disabled');
+                el.parent()[!el.prop('disabled') ? 'bind' : 'unbind']({mousedown: pushed, mouseup: check})[!el.prop('disabled') ? 'removeClass' : 'addClass']('disabled');
             };
 
             return this.each(function () {
