@@ -25,7 +25,6 @@ $(document).ready(function(){
 	clear:left;
 	float:left;
 	margin: 0 0 3px;
-	padding: 0 0 0 26px;
 	background: url("radio.png");
 	background-repeat:no-repeat;
 	cursor: default;
@@ -43,14 +42,13 @@ $(document).ready(function(){
 	clear:left;
 	float:left;
 	margin: 0 0 3px;
-	padding: 0 0 0 26px;
 	background: url("checkbox.png") no-repeat;
 	cursor: default;
 	text-align:left;
-
+	overflow:hidden;
 }
 
-.checkbox input, .radio input{position:absolute; right:-400px;top:0px;}
+.checkbox input, .radio input{position:absolute; left:-400px;top:0px;}
 
 label {
 	padding-left:10px;
