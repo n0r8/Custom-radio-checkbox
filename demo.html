@@ -9,17 +9,88 @@
 $(document).ready(function(){
 	$(".radioclass").Custom({
 		customStyleClass:'radio',
+		customHeight:'20',
+		enableHover: true
+	});
+	
+	$(".radioclass2").Custom({
+		customStyleClass:'radio2',
 		customHeight:'25'
 	});
+	
 	$(".checkboxclass").Custom({
 		customStyleClass:'checkbox',
-		customHeight:'20'
+		customHeight:'20',
+		enableHover: true
 	});
 });
 
 </script>
 <style type="text/css">
+/* --------------- reset.css --------------- */
+html, body, div, span, h1, h2, h3, h4, h5, h6, p, em, img, strong, sub, sup, b, u, i,  dl, dt, dd, ol, ul, li, fieldset, form, label, table, tbody, tfoot, thead, tr, th, td {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;                               
+	vertical-align: baseline;          
+	background: transparent;      
+}
+a {                                      	   
+	margin:0;
+	padding:0;
+	vertical-align:baseline;
+	background:transparent;
+	text-decoration:none;
+	color:#000;
+}
+table {						
+	border-collapse: collapse; 
+	border-spacing: 0;
+}
+td, td img {
+	vertical-align: top;			
+} 
+input, select, button, textarea {
+	margin: 0; 				
+	font-size: 100%; 	
+	font-family: 'CabinRegular';
+}
+
+input[type="checkbox"] { 		
+	vertical-align: bottom;
+}
+input[type="radio"] {
+	vertical-align: text-bottom;
+}
+sub {
+	vertical-align: sub;
+	font-size: smaller;
+}
+sup {
+	vertical-align: super;
+	font-size: smaller;
+}
+/* --------------- /reset.css --------------- */
+
+.clearfix:before, .clearfix:after {content: "\0020"; display: block; height: 0; visibility: hidden;} 
+.clearfix:after { clear: both; }
+.clearfix { zoom: 1; }
+
 .radio {
+	height: 20px;
+	width: 20px;
+	clear:left;
+	float:left;
+	margin: 0 0 3px;
+	background: url("radio2.png");
+	background-repeat:no-repeat;
+	cursor: default;
+	position:relative;
+	overflow:hidden;
+}
+
+.radio2{
 	height: 25px;
 	width: 19px;
 	clear:left;
@@ -29,9 +100,11 @@ $(document).ready(function(){
 	background-repeat:no-repeat;
 	cursor: default;
 	position:relative;
-
+	overflow:hidden;
 }
-.radio.disabled{
+
+
+.radio.disabled, .radio2.disabled{
 	opacity:0.5;
 	filter:Alpha(opacity="50");
 }
@@ -48,7 +121,7 @@ $(document).ready(function(){
 	overflow:hidden;
 }
 
-.checkbox input, .radio input{position:absolute; left:-400px;top:0px;}
+.checkbox input, .radio input, .radio2 input{position:absolute; left:-400px;top:0px;}
 
 label {
 	padding-left:10px;
@@ -58,65 +131,214 @@ label {
 
 
 body {
-font-family:arial;
-font-size:13px;
-color:#343434;
+	font-family:arial;
+	font: 62.5%/1.2em  Tahoma, Geneva, Kalimati, sans-serif;
+	color:#666;
+	background:#ccc;
 }
+
+.main{
+	width:600px;
+	padding:20px;
+	margin:100px auto;
+	-webkit-border-radius: 10px;
+	border-radius: 10px; 
+	background: #b8c6df; /* Old browsers */
+	background: -moz-linear-gradient(top,  #b8c6df 0%, #6d88b7 100%); /* FF3.6+ */
+	background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#b8c6df), color-stop(100%,#6d88b7)); /* Chrome,Safari4+ */
+	background: -webkit-linear-gradient(top,  #b8c6df 0%,#6d88b7 100%); /* Chrome10+,Safari5.1+ */
+	background: -o-linear-gradient(top,  #b8c6df 0%,#6d88b7 100%); /* Opera 11.10+ */
+	background: -ms-linear-gradient(top,  #b8c6df 0%,#6d88b7 100%); /* IE10+ */
+	background: linear-gradient(top,  #b8c6df 0%,#6d88b7 100%); /* W3C */
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#b8c6df', endColorstr='#6d88b7',GradientType=0 ); /* IE6-9 */
+	
+	
+        -webkit-box-shadow:  0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+        
+        box-shadow:  0px 0px 10px 2px rgba(0, 0, 0, 0.5);
+        
+        
+
+}
+
+h2{font-weight:normal; line-height:22px; font-size:20px; padding-bottom:10px; color:#fff;}
+.left{font-size:13px; line-height:20px; width:300px; float:left;}
+.right{float:left; width:300px;}
+.right pre{font-size:12px; color:#000; width:280px; padding:10px; background:rgba(255, 255, 255, 0.5); -webkit-border-radius: 5px;	border-radius: 5px; }
 </style>
 </head>
 
 <body>
 
-<div>
+<div class="main">
+
+<div class="box clearfix">
+	<h2>Checkboxes with hover on label</h2>
+	<div class="left">
+		<input type="checkbox" id="checkbox1" class="checkboxclass"/>
+		<label for="checkbox1">checkbox1</label>
+		<br clear="all" style="clear:both;"/>
+		
+		<input type="checkbox" id="checkbox2" class="checkboxclass"/>
+		<label for="checkbox2">checkbox2</label>
+		<br clear="all" style="clear:both;"/>
+		
+		<input type="checkbox" id="checkbox3" class="checkboxclass"/>
+		<label for="checkbox3">checkbox3</label>
+		<br clear="all" style="clear:both;"/>
+	</div>
+	<div class="right">
+		<pre><code>
+Call:
+
+$(".checkboxclass").Custom({
+
+	customStyleClass:'checkbox',
 	
-	<label for="checkbox1"><input type="checkbox" id="checkbox1" class="checkboxclass"/>checkbox1</label>
-	<br clear="all" style="clear:both;"/>
+	customHeight:'20',
 	
-	<input type="checkbox" id="checkbox2" class="checkboxclass"/>
-	<label for="checkbox2">checkbox2</label>
-	<br clear="all" style="clear:both;"/>
+	enableHover: true
 	
-	<input type="checkbox" id="checkbox3" class="checkboxclass"/>
-	<label for="checkbox3">checkbox3</label>
-	<br clear="all" style="clear:both;"/>
+});
+		</code></pre>
+	</div>
 </div>
 
-<div>
-	<input type="radio" id="radio1" name="group" class="radioclass"/>
-	<label for="radio1">radio1</label> <br />
+<div class="box clearfix">
+	<h2>Radio with hover on label + disabled radio</h2>
+	<div class="left">
+		<input type="radio" id="radio1" name="group" class="radioclass"/>
+		<label for="radio1">radio1</label>
 		<br clear="all" style="clear:both;"/>
-	<input type="radio" id="radio2" name="group" class="radioclass"/>
-	<label for="radio2">radio2</label>
+		
+		<input type="radio" id="radio2" name="group" class="radioclass"/>
+		<label for="radio2">radio2</label>
 		<br clear="all" style="clear:both;"/>
-	<input type="radio" id="radio3" name="group" class="radioclass" disabled="disabled"/>
-	<label for="radio3">radio3</label>
-	<br clear="all" style="clear:both;"/>
-</div>
-<div id="create">
+		
+		<input type="radio" id="radio3" name="group" class="radioclass" disabled="disabled"/>
+		<label for="radio3">radio3</label>
+		<br clear="all" style="clear:both;"/>
+		<button onClick="$('#radio3').removeAttr('disabled').trigger('custom.refresh'); " >Enable</button>
+		<button onClick="$('#radio3').attr('disabled','disabled').trigger('custom.refresh'); " >Disable</button>
+		
+	</div>
+	<div class="right">
+		<pre><code>
+Call:
+
+$(".radioclass").Custom({
+
+	customStyleClass:'radio',
 	
+	customHeight:'20',
+	
+	enableHover: true
+	
+});
+		</code></pre>
+	</div>
 </div>
-	<br clear="all" style="clear:both;"/>
-	<button onClick="$('#radio3').removeAttr('disabled').trigger('custom.refresh'); " >Enable</button>
-	<button onClick="$('#radio3').attr('disabled','disabled').trigger('custom.refresh'); " >Disable</button>
+
+<div class="box clearfix">
+	<h2>Radio with another skin and wthout hover on label </h2>
+	<div class="left">
+		<input type="radio" id="radio11" name="group2" class="radioclass2"/>
+		<label for="radio11">radio1</label>
+		<br clear="all" style="clear:both;"/>
+		
+		<input type="radio" id="radio21" name="group2" class="radioclass2"/>
+		<label for="radio21">radio2</label>
+		<br clear="all" style="clear:both;"/>
+		
+		<input type="radio" id="radio31" name="group2" class="radioclass2" disabled="disabled"/>
+		<label for="radio31">radio3</label>
+		<br clear="all" style="clear:both;"/>
+		
+		<button onClick="$('#radio31').removeAttr('disabled').trigger('custom.refresh'); " >Enable</button>
+		<button onClick="$('#radio31').attr('disabled','disabled').trigger('custom.refresh'); " >Disable</button>
+	</div>
+	<div class="right">
+		<pre><code>
+Call:
+
+$(".radioclass2").Custom({
+
+	customStyleClass:'radio2',
+	
+	customHeight:'25'
+	
+});
+	
+		</code></pre>
+	</div>
+</div>
+
+<div class="box clearfix">
+	<h2>Radio with hover on label + disabled radio, <u>input inside Label tag</u></h2>
+	<div class="left">
+		
+		<label for="radio12"><input type="radio" id="radio12" name="group" class="radioclass"/>&nbsp;&nbsp;&nbsp;radio1</label>
+		<br clear="all" style="clear:both;"/>
+		
+		
+		<label for="radio22"><input type="radio" id="radio22" name="group" class="radioclass"/>&nbsp;&nbsp;&nbsp;radio2</label>
+		<br clear="all" style="clear:both;"/>
+		
+		
+		<label for="radio32"><input type="radio" id="radio32" name="group" class="radioclass" disabled="disabled"/>&nbsp;&nbsp;&nbsp;radio3</label>
+		<br clear="all" style="clear:both;"/>
+		<button onClick="$('#radio32').removeAttr('disabled').trigger('custom.refresh'); " >Enable</button>
+		<button onClick="$('#radio32').attr('disabled','disabled').trigger('custom.refresh'); " >Disable</button>
+		
+	</div>
+	<div class="right">
+		<pre><code>
+Call:
+
+$(".radioclass").Custom({
+
+	customStyleClass:'radio',
+	
+	customHeight:'20',
+	
+	enableHover: true
+	
+});
+		</code></pre>
+	</div>
+</div>
+
+<div class="box clearfix">
+	<h2>Create 1000 buttons</h2>
+	<div class="left">
+	<div id="create" style="height:200px; overflow:auto;">
+	
+	</div>
+		
 	<button id="create-btn">Create</button>
 
 	<script type="text/javascript">
 		$('#create-btn').click(function(){
-			$('#create').html('<input type="radio" id="radio4" name="group" class="radioclass"/><label for="radio4">radio4</label><input type="checkbox" id="checkbox4" class="checkboxclass"/><label for="checkbox4">checkbox4</label><br clear="all" style="clear:both;"/>');
-			for (var i = 5; i < 1000; i++) {
+			
+			for (var i = 4; i < 1004; i++) {
 				$('#create').append('<input type="radio" id="radio'+i+'" name="group" class="radioclass"/><label for="radio'+i+'">radio'+i+'</label><br clear="all" style="clear:both;"/>');
 			};
 
 			$(".radioclass").Custom({
 				customStyleClass:'radio',
-				customHeight:'25'
+				customHeight:'20',
+				enableHover: true
 			});
-			$(".checkboxclass").Custom({
-				customStyleClass:'checkbox',
-				customHeight:'20'
-			});
+			
 		});
 	</script>
+		
+	</div>
+
+</div>
+
+
+</div>
 
 </body>
 </html>

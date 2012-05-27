@@ -29,7 +29,8 @@
             /*Дефолтные значения параметров*/
             var defaults = {
                 customStyleClass:"checkbox",
-                customHeight:"16"
+                customHeight:"16",
+				enableHover: false
             };
 
             /*Заменяем дефолтные опции на переданные если таковые есть*/
@@ -85,7 +86,32 @@
             var refresh = function () {
 				var el= $(this);
                 el.parent()[!el.prop('disabled') ? 'bind' : 'unbind']({mousedown: pushed, mouseup: check})[!el.prop('disabled') ? 'removeClass' : 'addClass']('disabled');
+				hoverBind(el);
             };
+			
+			var hoverBind = function(element){
+				var el = element;
+				var span = el.parent();
+				
+				/*Hover is disabled by default*/
+				if(options.enableHover && !el.prop('disabled')){
+					$('label[for='+el.attr('id')+']').hover(function(){
+						if (el.prop('checked')) {
+							span.css('backgroundPosition', "0px -" + el.attr('data-height') * 3 + "px");
+						}else{
+							span.css('backgroundPosition', "0px -" + el.attr('data-height') + "px");
+						}
+						
+					}, 
+					function(){
+						if (el.prop('checked')) {
+							span.css('backgroundPosition', "0px -" + el.attr('data-height') * 2 + "px");
+						}else{
+							span.css('backgroundPosition', "0px 0px");
+						}
+					});
+				}
+			};
 
             return this.each(function () {
 				var el=$(this);
@@ -98,15 +124,18 @@
                     if (el.prop('checked')) {  /*Задаем картинку еси элемент отмечен*/
                         span.css('backgroundPosition', "0px -" + (options.customHeight * 2) + "px");
                     }
+					
+					hoverBind(el);
 
                     /*Бинд на изменение состояния элемента и кастомное событие для обновления после программного изменения состояния кнопки*/
 					el.bind({change:update, 'custom.refresh':refresh});
-
+										
                     if (!el.prop('disabled')){
 						span.parent('label').length ? span.bind({mousedown:pushed}) : span.bind({mousedown:pushed,mouseup:check});
                     } else {
                         span.addClass('disabled');
                     }
+					
                 }
             });
         }
